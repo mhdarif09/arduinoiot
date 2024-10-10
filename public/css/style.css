@@ -1,0 +1,71 @@
+body {
+    overflow-x: hidden;
+  }
+  
+  /* Hero Section Animation */
+  .hero {
+    background-color: #1e1e1e;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .barrier {
+    width: 100px;
+    height: 10px;
+    background-color: red;
+    animation: barrierMove 3s infinite;
+  }
+  
+  @keyframes barrierMove {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-150px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Features Icons Animation */
+  .feature-icon {
+    font-size: 3rem;
+    color: #007bff;
+    animation: iconPulse 2s infinite;
+  }
+  
+  @keyframes iconPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* How It Works Barrier Animation */
+  .iot-barrier {
+    width: 300px;
+    height: 10px;
+    background-color: blue;
+    position: relative;
+    animation: iotBarrierMove 4s infinite;
+  }
+  
+  @keyframes iotBarrierMove {
+    0%, 100% { left: 0; }
+    50% { left: 100px; }
+  }
+  
+  .vehicle {
+    width: 50px;
+    height: 30px;
+    background-color: yellow;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    animation: vehicleMove 4s infinite;
+  }
+  
+  @keyframes vehicleMove {
+    0%, 100% { left: 0; }
+    50% { left: 100px; }
+  }
+  
