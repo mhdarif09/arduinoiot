@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     })->name('admin.dashboard');
 });
 
-// Route untuk super admin dengan middleware role
-Route::middleware(['auth', 'role:super_admin'])->group(function () {
-    Route::get('/super-admin', function () {
-        return view('super_admin.dashboard'); // Ganti dengan view dashboard super admin kamu
-    })->name('super_admin.dashboard');
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit'); // Route untuk menampilkan form edit
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update'); // Route untuk proses update
 });
