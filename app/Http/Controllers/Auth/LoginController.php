@@ -36,7 +36,7 @@ class LoginController
                 return redirect()->intended('/admin')->with('success', 'Login successful as Super Admin');
             } else {
                 // Redirect ke halaman umum
-                return redirect()->intended('/home')->with('success', 'Login successful');
+                return redirect()->intended('/admin')->with('success', 'Login successful');
             }
         }
 

@@ -34,6 +34,13 @@
                         <a class="nav-link" href="#">Settings</a>
                     </li>
 
+                         <!-- Link hanya terlihat jika role adalah super_admin -->
+                @if (Auth::user()->role == 'super_admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.staff.create') }}">Tambah Staff</a>
+                </li>
+            @endif
+            
                     <!-- Form Logout -->
                     <li class="nav-item">
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
