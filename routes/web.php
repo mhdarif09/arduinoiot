@@ -23,14 +23,12 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route untuk admin dengan middleware role
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.index'); // Ganti dengan view dashboard admin kamu
+// Group route untuk admin dengan middleware 'auth' dan 'role:admin'
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', function () {
+        return view('admin.index'); // Halaman dashboard admin
     })->name('admin.dashboard');
-});
 
-Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit'); // Route untuk menampilkan form edit
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update'); // Route untuk proses update
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 });

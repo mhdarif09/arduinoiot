@@ -11,7 +11,7 @@
 
     <!-- Custom CSS for elegant styling -->
     <link rel="stylesheet" href="{{ asset('css/styleadmin.css') }}">
-    
+
     <style>
         /* Custom styles to center the form and add image styling */
         .profile-container {
@@ -40,43 +40,52 @@
         .profile-pic-container {
             text-align: center;
         }
+
+
+
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Elegant Admin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.profile.edit')}}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Settings</a>
-                    </li>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+                <div class="position-sticky pt-3 text-center">
+                    <h5 class="text-white mb-4">Elegant Admin</h5>
+
+                    <div class="mb-4">
+                        <img src="{{ asset('storage/profile/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="profil-pic rounded-circle bg-white">
+                        <h6 class="text-white mt-2">{{ auth()->user()->name }}</h6>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-white {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
+                               href="{{ route('admin.dashboard') }}">Home</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-white {{ request()->routeIs('admin.profile.edit') ? 'active' : '' }}"
+                               href="{{ route('admin.profile.edit') }}">Profile</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-white {{ request()->is('admin/settings') ? 'active' : '' }}"
+                               href="#">Settings</a>
+                        </li>
+                    </ul>
+
+                    <div class="mt-auto">
+                        <a class="nav-link text-white p-2 mb-3" href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    </div>
 
                     <!-- Form Logout -->
-                    <li class="nav-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </nav>
 
     <!-- Profile Edit Form -->
     <div class="container profile-container">
