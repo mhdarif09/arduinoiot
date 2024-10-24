@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -40,4 +41,8 @@ Route::prefix('admin')->middleware(['auth', 'role:super_admin'])->group(function
     Route::get('/staff', [StaffController::class, 'index'])->name('admin.staff.index');
     Route::get('/staff/create', [StaffController::class, 'create'])->name('admin.staff.create');
     Route::post('/staff', [StaffController::class, 'store'])->name('admin.staff.store');
+});
+
+Route::get('/setting', function()   {
+    return view('admin.setting');
 });

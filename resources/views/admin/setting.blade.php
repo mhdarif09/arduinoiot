@@ -47,7 +47,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
         <div
             class="d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Profile Overview</h1>
+            <h1 class="h2">Setting Overview</h1>
         </div>
         <div class="row">
             <!-- Sidebar -->
@@ -58,7 +58,8 @@
                     <div class="mb-4">
                         <img src="{{ asset('storage/profile/' . auth()->user()->profile_picture) }}"
                             alt="Profile Picture" class="profil-pic rounded-circle bg-white">
-                        <h6 class="text-white mt-2">{{ auth()->user()->name }}</h6>
+                        <h6 class="text-white mt-2">Super admin</h6>
+                        {{-- {{ auth()->user()->name }} //For h6--}}
                     </div>
 
                     <!-- Navigation Links -->
@@ -92,7 +93,7 @@
             <!-- Profile Edit Form -->
             <div class="container profile-container">
                 <div class="profile-form">
-                    <h1 class="text-center mb-4">Edit Profile</h1>
+                    <h1 class="text-center mb-4">Setting Profile</h1>
 
                     @if (session('success'))
                         <div class="alert alert-success text-center">
@@ -102,9 +103,11 @@
 
                     <!-- Profile Picture Section -->
                     <div class="profile-pic-container mb-4">
-                        <img src="{{ asset('storage/profile/' . $user->profile_picture) }}" alt="Profile Picture"
+                        <img src="#" alt="Profile Picture"
+                        {{-- {{ asset('storage/profile/' . $user->profile_picture) }} //For img source--}}
                             class="profile-pic">
-                        <h4 class="mt-3">{{ $user->name }}</h4>
+                        <h4 class="mt-3">Super admin</h4>
+                        {{-- {{ $user->name }} //for h4--}}
                     </div>
 
                     <!-- Form to Update Profile -->
@@ -119,13 +122,15 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" name="name" id="name" class="form-control"
-                                value="{{ old('name', $user->name) }}" required>
+                                value="none" required>
+                                {{-- {{ old('name', $user->name) }} //For value--}}
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" id="email" class="form-control"
-                                value="{{ old('email', $user->email) }}" required>
+                                value="" required>
+                                {{-- {{ old('email', $user->email) }} //For value --}}
                         </div>
 
                         <div class="mb-3">
